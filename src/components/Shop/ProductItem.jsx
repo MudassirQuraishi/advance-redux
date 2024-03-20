@@ -1,7 +1,15 @@
+/* eslint-disable react/prop-types */
+import { cartActions } from "../../store/slices/cartSlice";
 import Card from "../UI/Card";
 import classes from "./ProductItem.module.css";
+import { useDispatch } from "react-redux";
 
 const ProductItem = (props) => {
+    const dispatch = useDispatch();
+    const cartHandlers = () => {
+        dispatch(cartActions.addItem(props))
+
+    }
     const { title, price, description } = props;
 
     return (
@@ -13,7 +21,7 @@ const ProductItem = (props) => {
                 </header>
                 <p>{description}</p>
                 <div className={classes.actions}>
-                    <button>Add to Cart</button>
+                    <button onClick={cartHandlers}>Add to Cart</button>
                 </div>
             </Card>
         </li>
